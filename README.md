@@ -34,6 +34,7 @@ gem 'pundit' # <- add it
 ## Set it up for each controller and each action
 
 ### Generate the policy
+
 ```ruby
 rails g pundit:policy article
 ```
