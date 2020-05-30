@@ -35,7 +35,7 @@ end
 
 ### 1. Generate the policy
 
-```ruby
+```
 rails g pundit:policy article
 ```
 ### 2. Authorize in the policy
