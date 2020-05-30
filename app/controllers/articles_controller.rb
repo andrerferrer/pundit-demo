@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  after_action :authorize_article, only: [:new, :create]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = policy_scope Article
   end
 
   # GET /articles/1
@@ -63,13 +64,19 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :body)
-    end
+  def authorize_article
+    authorize @article
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+    authorize_article
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :body)
+  end
 end
