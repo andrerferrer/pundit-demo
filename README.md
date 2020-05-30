@@ -33,8 +33,28 @@ gem 'pundit' # <- add it
 
 ## Set it up for each controller and each action
 
-### Generate the policy
+### 1. Generate the policy
 
 ```ruby
 rails g pundit:policy article
 ```
+### 2. Authorize in the policy
+```ruby
+# ArticlePolicy
+def show?
+  # anyone can show
+  true
+end
+```
+
+* If you see a `Pundit::NotAuthorizedError` the above is what you need to do.
+
+### 3. Authorize in the controller
+```ruby
+# In the ArticlesController
+def show
+  authorize @article
+end
+```
+
+* If you see a `Pundit::AuthorizationNotPerformedError` the above is what you need to do.
