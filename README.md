@@ -1,3 +1,6 @@
+## Goal
+This is an app to teach how to implement basic Authorization in Rails using the [pundit gem](https://github.com/varvet/pundit).
+
 ## Setup
 
 ### Install the gem
